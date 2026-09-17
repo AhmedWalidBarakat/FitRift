@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const { PrismaClient } = require('@prisma/client');
 const Groq = require('groq-sdk');
 const { createClient } = require('@supabase/supabase-js');
@@ -7,6 +8,17 @@ const { createClient } = require('@supabase/supabase-js');
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// /chat is the only route that calls the (paid, usage-billed) Groq API, so
+// it gets its own tighter limit to stop a single client from running up
+// costs — everything else is just our own database, which is free to hit.
+const chatLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 30,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: 'Too many messages sent — please wait a bit before trying again.' },
+});
 const prisma = new PrismaClient();
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_PUBLISHABLE_KEY);
@@ -674,7 +686,7 @@ app.get('/rank-checklist', requireAuth, async (req, res) => {
     res.json(nextRankChecklist(rankState.currentRank, rankState.cumulativeXp, totalWorkouts, totalReps));
 });
 
-app.post('/chat', requireAuth, async (req, res) => {
+app.post('/chat', chatLimiter, requireAuth, async (req, res) => {
     const profileId = req.profileId;
     const { message } = req.body;
 
@@ -766,6 +778,7 @@ app.post('/chat', requireAuth, async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
 });
