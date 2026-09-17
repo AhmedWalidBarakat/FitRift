@@ -9,6 +9,8 @@
 ![Groq](https://img.shields.io/badge/Groq-LLM-F55036)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+**[Live demo →](https://fit-rift.vercel.app)** (backend is on a free tier and may take ~30s to wake up on the first request)
+
 ![FitRift screenshot](assets/screenshot.png)
 
 ## Why
