@@ -1,0 +1,164 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Profile {
+  id          String   @id
+  displayName String?
+  createdAt   DateTime @default(now())
+
+  workoutLogs     WorkoutLog[]
+  baselines       Baseline[]
+  rankState       RankState?
+  personalRecords PersonalRecord[]
+  characterStats  CharacterStats?
+  questProgress   QuestProgress[]
+  badges          ProfileBadge[]
+}
+
+// A quest "instance" for one user in one time period (one calendar day for
+// daily quests, one ISO week for weekly quests). periodKey identifies which
+// period this row belongs to, so a new row is naturally created each period
+// instead of needing a reset job.
+model QuestProgress {
+  id            Int       @id @default(autoincrement())
+  profileId     String
+  profile       Profile   @relation(fields: [profileId], references: [id])
+  slot          String    // "daily" | "weekly" — which rotation slot this fills
+  questType     String    // key into the quest pool, e.g. "daily_run", "weekly_volume"
+  periodKey     String    // e.g. "2026-09-17" or "2026-W38"
+  currentAmount Int       @default(0)
+  targetAmount  Int
+  xpReward      Int
+  statKey       String?   // stat this quest also rewards on completion, if any
+  statAmount    Int?
+  requirementsJson String? // for compound quests: the static list of sub-goals
+  progressJson     String? // for compound quests: live per-sub-goal progress
+  completed     Boolean   @default(false)
+  completedAt   DateTime?
+
+  @@unique([profileId, slot, periodKey])
+}
+
+model Badge {
+  id          Int       @id @default(autoincrement())
+  key         String    @unique // stable identifier, e.g. "rank_d", "first_record"
+  name        String
+  description String
+  icon        String
+  profiles    ProfileBadge[]
+}
+
+model ProfileBadge {
+  id        Int      @id @default(autoincrement())
+  profileId String
+  profile   Profile  @relation(fields: [profileId], references: [id])
+  badgeId   Int
+  badge     Badge    @relation(fields: [badgeId], references: [id])
+  earnedAt  DateTime @default(now())
+
+  @@unique([profileId, badgeId])
+}
+
+model Exercise {
+  id         Int               @id @default(autoincrement())
+  name       String            @unique
+  unit       String
+
+  // Progression chain: exercises with the same `family` are variants of
+  // each other, ordered easiest (0) to hardest. Standalone exercises with
+  // no variants just use their own name as the family, order 0.
+  family           String
+  progressionOrder Int    @default(0)
+
+  // How much this exercise contributes to each RPG stat when logged.
+  strengthWeight  Float @default(0)
+  enduranceWeight Float @default(0)
+  vitalityWeight  Float @default(0)
+  agilityWeight   Float @default(0)
+
+  setEntries      WorkoutSetEntry[]
+  baselines       Baseline[]
+  personalRecords PersonalRecord[]
+}
+
+model PersonalRecord {
+  id         Int      @id @default(autoincrement())
+  profileId  String
+  profile    Profile  @relation(fields: [profileId], references: [id])
+  exerciseId Int
+  exercise   Exercise @relation(fields: [exerciseId], references: [id])
+  maxReps    Int
+  achievedAt DateTime @default(now())
+
+  @@unique([profileId, exerciseId])
+}
+
+model CharacterStats {
+  id        Int     @id @default(autoincrement())
+  profileId String  @unique
+  profile   Profile @relation(fields: [profileId], references: [id])
+  strength  Float   @default(0)
+  endurance Float   @default(0)
+  vitality  Float   @default(0)
+  agility   Float   @default(0)
+  discipline Float  @default(0)
+}
+
+model WorkoutLog {
+  id           Int      @id @default(autoincrement())
+  profileId    String
+  profile      Profile  @relation(fields: [profileId], references: [id])
+  timestamp    DateTime @default(now())
+  rawInputText String?
+  rpe          Int?
+  notes        String?
+
+  setEntries   WorkoutSetEntry[]
+}
+
+model WorkoutSetEntry {
+  id           Int        @id @default(autoincrement())
+  workoutLogId Int
+  workoutLog   WorkoutLog @relation(fields: [workoutLogId], references: [id])
+  exerciseId   Int
+  exercise     Exercise   @relation(fields: [exerciseId], references: [id])
+  reps         Int
+  weightLbs    Int?
+}
+
+model Baseline {
+  id            Int      @id @default(autoincrement())
+  profileId     String
+  profile       Profile  @relation(fields: [profileId], references: [id])
+  exerciseId    Int
+  exercise      Exercise @relation(fields: [exerciseId], references: [id])
+  baselineReps  Int
+  establishedAt DateTime @default(now())
+
+  @@unique([profileId, exerciseId])
+}
+
+model RankState {
+  id                Int       @id @default(autoincrement())
+  profileId         String    @unique
+  profile           Profile   @relation(fields: [profileId], references: [id])
+  currentRank       String    @default("Bronze")
+  cumulativeXp      Float     @default(0)
+  currentStreakDays Int       @default(0)
+  longestStreakDays Int       @default(0)
+  graceUsed         Boolean   @default(false)
+  lastWorkoutDate   DateTime?
+}
