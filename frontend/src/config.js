@@ -1,6 +1,6 @@
 import { supabase } from './supabaseClient';
 
-export const API_URL = 'http://localhost:3000';
+export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 // Wraps fetch to automatically attach the logged-in user's Supabase session
 // token, so the backend can verify who's making the request.
