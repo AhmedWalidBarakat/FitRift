@@ -262,7 +262,7 @@ export default function ChatPage() {
                   ⚔️ NEW RECORD — {m.newRecords.map(r => `${r.exercise} ${r.previousBest} → ${r.newBest}`).join(', ')}
                 </div>
               )}
-              {m.text}
+              <span className="assistant-text">{m.text}</span>
               {m.xpEarned > 0 && <div className="xp-tag">+{Math.round(m.xpEarned)} XP{m.questXpBonus ? ` (+${m.questXpBonus} quest)` : ''}</div>}
             </motion.div>
           ))}
