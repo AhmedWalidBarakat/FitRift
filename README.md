@@ -17,7 +17,7 @@
 
 Most fitness trackers make you fill out forms — pick an exercise from a dropdown, type a number, hit save. FitRift instead reads a plain-English message like *"20 pushups 15 squats, felt tough"*, figures out what you did, and turns it into RPG progress: XP, stat growth, personal records, and a rank that only ever measures you against your own history — never against anyone else.
 
-Personally, this one wasn't just a portfolio exercise — I'm into fitness and pushing myself physically, and I grew up on games, so a project that turns real workouts into RPG-style progression was something I actually wanted to use myself, not just build.
+Personally, this one wasn't just a portfolio exercise — I'm into fitness and pushing myself physically, and I grew up on games, so a project that turns real workouts into RPG-style progression was something I actually wanted to use myself, not just build. The exercises it tracks are the ones I actually train with, so it's genuinely my own workout log now, not just a demo.
 
 ## Features
 
