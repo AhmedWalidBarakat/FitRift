@@ -7,6 +7,17 @@ import Quests from './pages/Quests';
 import Auth from './pages/Auth';
 import './App.css';
 
+function SceneBubbles() {
+  const icons = ['🏋️', '🏃', '🤸', '🧗', '💪', '🔥'];
+  return (
+    <div className="scene-bubbles" aria-hidden="true">
+      {icons.map((icon, i) => (
+        <span key={icon} className={`scene-bubble b${i + 1}`}>{icon}</span>
+      ))}
+    </div>
+  );
+}
+
 function App() {
   const [session, setSession] = useState(undefined); // undefined = still checking
 
@@ -26,35 +37,41 @@ function App() {
 
   if (!session) {
     return (
-      <div className="app">
-        <header className="header">
-          <div className="badge">⚔️</div>
-          <h1>FitRift</h1>
-        </header>
-        <Auth />
-      </div>
+      <>
+        <SceneBubbles />
+        <div className="app">
+          <header className="header">
+            <div className="badge">⚔️</div>
+            <h1>FitRift</h1>
+          </header>
+          <Auth />
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="app">
-      <header className="header">
-        <div className="badge">⚔️</div>
-        <h1>FitRift</h1>
-        <nav className="nav">
-          <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Chat</NavLink>
-          <NavLink to="/ascension" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Ascension Path</NavLink>
-          <NavLink to="/quests" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Quests</NavLink>
-        </nav>
-        <button className="logout-btn" onClick={() => supabase.auth.signOut()}>Log out</button>
-      </header>
+    <>
+      <SceneBubbles />
+      <div className="app">
+        <header className="header">
+          <div className="badge">⚔️</div>
+          <h1>FitRift</h1>
+          <nav className="nav">
+            <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Chat</NavLink>
+            <NavLink to="/ascension" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Ascension Path</NavLink>
+            <NavLink to="/quests" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Quests</NavLink>
+          </nav>
+          <button className="logout-btn" onClick={() => supabase.auth.signOut()}>Log out</button>
+        </header>
 
-      <Routes>
-        <Route path="/" element={<ChatPage />} />
-        <Route path="/ascension" element={<AscensionPath />} />
-        <Route path="/quests" element={<Quests />} />
-      </Routes>
-    </div>
+        <Routes>
+          <Route path="/" element={<ChatPage />} />
+          <Route path="/ascension" element={<AscensionPath />} />
+          <Route path="/quests" element={<Quests />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 

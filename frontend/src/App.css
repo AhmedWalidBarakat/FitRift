@@ -4,18 +4,100 @@
 
 body {
   margin: 0;
-  background: #140b0b;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background:
+    radial-gradient(1.5px 1.5px at 12% 15%, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1.5px 1.5px at 28% 8%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 45% 20%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 62% 6%, rgba(255, 255, 255, 0.35), transparent),
+    radial-gradient(1px 1px at 78% 16%, rgba(255, 255, 255, 0.45), transparent),
+    radial-gradient(1.5px 1.5px at 90% 10%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 8% 30%, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 95% 28%, rgba(255, 255, 255, 0.3), transparent),
+    linear-gradient(180deg, #150a10 0%, #2a1018 30%, #3a1712 55%, #1c0d0c 80%, #140b0b 100%);
+  background-attachment: fixed;
+  background-size: cover;
   color: #e6e8f0;
   font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  height: 42vh;
+  background: #351a22;
+  clip-path: polygon(0% 100%, 0% 55%, 8% 40%, 16% 58%, 24% 30%, 33% 52%, 42% 22%, 52% 48%, 61% 18%, 70% 45%, 80% 26%, 89% 50%, 100% 35%, 100% 100%);
+  opacity: 0.75;
+}
+
+body::after {
+  height: 30vh;
+  background: #1c0d0f;
+  clip-path: polygon(0% 100%, 0% 65%, 10% 48%, 20% 68%, 30% 42%, 40% 62%, 50% 38%, 60% 60%, 70% 40%, 80% 64%, 90% 46%, 100% 62%, 100% 100%);
+}
+
 .app {
+  position: relative;
+  z-index: 1;
   max-width: 720px;
   margin: 0 auto;
   padding: 1.5rem 1rem;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Decorative exercise icons scattered in the margins around the main
+   column. Fixed to the viewport (not the content), so they sit in the
+   empty side space instead of ever overlapping cards or text, and are
+   hidden once the viewport is too narrow to have that side space. */
+.scene-bubbles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.scene-bubble {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(212, 175, 55, 0.22), rgba(30, 20, 20, 0.35));
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  font-size: 1.5rem;
+  opacity: 0.55;
+  animation: bubble-float 6s ease-in-out infinite;
+}
+
+.scene-bubble.b1 { top: 12%; left: 4%; animation-delay: 0s; }
+.scene-bubble.b2 { top: 60%; left: 6%; animation-delay: 1.5s; }
+.scene-bubble.b3 { top: 85%; left: 3%; animation-delay: 3s; }
+.scene-bubble.b4 { top: 18%; right: 4%; animation-delay: 0.8s; }
+.scene-bubble.b5 { top: 55%; right: 6%; animation-delay: 2.2s; }
+.scene-bubble.b6 { top: 82%; right: 3%; animation-delay: 3.6s; }
+
+@keyframes bubble-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (max-width: 1100px) {
+  .scene-bubbles { display: none; }
 }
 
 .header {
