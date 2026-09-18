@@ -4,6 +4,7 @@ import { supabase } from './supabaseClient';
 import ChatPage from './pages/ChatPage';
 import AscensionPath from './pages/AscensionPath';
 import Quests from './pages/Quests';
+import Rank from './pages/Rank';
 import Auth from './pages/Auth';
 import { DumbbellIcon, MountainIcon, FlameIcon, LightningIcon } from './SceneIcons';
 import WisdomScroll from './WisdomScroll';
@@ -68,6 +69,7 @@ function App() {
           <h1>FitRift</h1>
           <nav className="nav">
             <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Chat</NavLink>
+            <NavLink to="/rank" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Rank</NavLink>
             <NavLink to="/ascension" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Ascension Path</NavLink>
             <NavLink to="/quests" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Quests</NavLink>
           </nav>
@@ -76,6 +78,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<ChatPage />} />
+          <Route path="/rank" element={<Rank />} />
           <Route path="/ascension" element={<AscensionPath />} />
           <Route path="/quests" element={<Quests />} />
         </Routes>

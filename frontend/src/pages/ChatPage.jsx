@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { authedFetch } from '../config';
-
-const STAT_ICONS = { strength: '💪', endurance: '❤️', vitality: '🛡️', agility: '⚡', discipline: '🧠' };
 
 const SpeechRecognitionApi = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -22,10 +21,8 @@ export default function ChatPage() {
   ]);
   const [input, setInput] = useState('');
   const [rankState, setRankState] = useState(null);
-  const [characterStats, setCharacterStats] = useState(null);
-  const [quests, setQuests] = useState(null);
-  const [badges, setBadges] = useState(null);
   const [checklist, setChecklist] = useState(null);
+  const [quests, setQuests] = useState(null);
   const [loading, setLoading] = useState(false);
   const [listening, setListening] = useState(false);
   const prevRank = useRef(null);
@@ -34,7 +31,6 @@ export default function ChatPage() {
 
   function refreshSecondaryData() {
     authedFetch('/quests').then(r => r.json()).then(setQuests);
-    authedFetch('/badges').then(r => r.json()).then(setBadges);
     authedFetch('/rank-checklist').then(r => r.json()).then(setChecklist);
   }
 
@@ -47,10 +43,6 @@ export default function ChatPage() {
           prevRank.current = data.currentRank;
         }
       });
-
-    authedFetch('/stats')
-      .then(r => r.json())
-      .then(data => data && setCharacterStats(data));
 
     refreshSecondaryData();
   }, []);
@@ -89,7 +81,6 @@ export default function ChatPage() {
         },
       ]);
 
-      if (data.characterStats) setCharacterStats(data.characterStats);
       if (data.nextRankChecklist !== undefined) setChecklist(data.nextRankChecklist);
       refreshSecondaryData();
 
@@ -155,50 +146,28 @@ export default function ChatPage() {
         {rankState && (
           <motion.div
             key={rankState.currentRank}
-            className={`rank-card rank-${rankState.currentRank.toLowerCase()}`}
+            className={`rank-card rank-${rankState.currentRank.toLowerCase()} compact`}
             initial={{ opacity: 0, scale: 0.9, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ type: 'spring', stiffness: 200, damping: 18 }}
           >
-            <div className="rank-name">{rankState.currentRank}-RANK</div>
-            <div className="rank-stats">
-              <span>🔥 {rankState.currentStreakDays} day streak</span>
-              <span>{Math.round(rankState.cumulativeXp)} XP</span>
-            </div>
-            {checklist && (
-              <div className="progress-track">
-                <motion.div
-                  className="progress-fill"
-                  animate={{ width: `${progress * 100}%` }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                />
+            <Link to="/rank" className="rank-card-link">
+              <div className="rank-name">{rankState.currentRank}-RANK</div>
+              <div className="rank-stats">
+                <span>🔥 {rankState.currentStreakDays} day streak</span>
+                <span>{Math.round(rankState.cumulativeXp)} XP</span>
               </div>
-            )}
-            {checklist && <div className="progress-label">Progress to {checklist.rank}-Rank</div>}
-
-            {characterStats && (
-              <div className="stat-grid">
-                {Object.entries(STAT_ICONS).map(([key, icon]) => (
-                  <div className="stat" key={key}>
-                    <span>{icon} {key[0].toUpperCase() + key.slice(1)}</span>
-                    <span className="stat-value">{Math.round(characterStats[key])}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {checklist && (
-              <div className="checklist">
-                <div className="checklist-title">{checklist.rank}-RANK REQUIREMENTS</div>
-                {checklist.requirements.map((r, i) => (
-                  <div key={i} className={`checklist-item ${r.met ? 'met' : ''}`}>
-                    <span>{r.met ? '✓' : '☐'}</span>
-                    <span>{r.label}</span>
-                    <span className="checklist-progress">{r.current}/{r.target}</span>
-                  </div>
-                ))}
-              </div>
-            )}
+              {checklist && (
+                <div className="progress-track">
+                  <motion.div
+                    className="progress-fill"
+                    animate={{ width: `${progress * 100}%` }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                  />
+                </div>
+              )}
+              {checklist && <div className="progress-label">Progress to {checklist.rank}-Rank · full stats on the Rank page →</div>}
+            </Link>
 
             {quests && (
               <div className="quest-box">
@@ -218,14 +187,6 @@ export default function ChatPage() {
                 <div className="quest-track">
                   <div className="quest-fill weekly" style={{ width: `${Math.min(100, (quests.weekly.currentAmount / quests.weekly.targetAmount) * 100)}%` }} />
                 </div>
-              </div>
-            )}
-
-            {badges?.earned?.length > 0 && (
-              <div className="badge-row">
-                {badges.earned.map(b => (
-                  <span key={b.key} className="badge-icon" title={`${b.name} — ${b.description}`}>{b.icon}</span>
-                ))}
               </div>
             )}
           </motion.div>
