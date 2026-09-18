@@ -101,11 +101,19 @@ body::after {
 }
 
 .header {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.6rem;
   margin-bottom: 1rem;
+  padding-right: 5.5rem;
   flex-wrap: wrap;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .nav {
