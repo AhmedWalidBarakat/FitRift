@@ -6,8 +6,10 @@ import AscensionPath from './pages/AscensionPath';
 import Quests from './pages/Quests';
 import Rank from './pages/Rank';
 import Auth from './pages/Auth';
+import Landing from './pages/Landing';
 import { DumbbellIcon, MountainIcon, FlameIcon, LightningIcon } from './SceneIcons';
 import WisdomScroll from './WisdomScroll';
+import UpgradeAccount from './UpgradeAccount';
 import './App.css';
 
 function SceneBubbles() {
@@ -30,6 +32,8 @@ function SceneBubbles() {
 
 function App() {
   const [session, setSession] = useState(undefined); // undefined = still checking
+  const [showAuth, setShowAuth] = useState(false);
+  const [dismissedUpgrade, setDismissedUpgrade] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
@@ -53,12 +57,17 @@ function App() {
           <header className="header">
             <div className="badge">⚔️</div>
             <h1>FitRift</h1>
+            {!showAuth && (
+              <button className="nav-link signin-corner" onClick={() => setShowAuth(true)}>Sign In</button>
+            )}
           </header>
-          <Auth />
+          {showAuth ? <Auth /> : <Landing onShowAuth={() => setShowAuth(true)} />}
         </div>
       </>
     );
   }
+
+  const isGuest = session.user.is_anonymous;
 
   return (
     <>
@@ -75,6 +84,10 @@ function App() {
           </nav>
           <button className="logout-btn" onClick={() => supabase.auth.signOut()}>Log out</button>
         </header>
+
+        {isGuest && !dismissedUpgrade && (
+          <UpgradeAccount onDone={() => setDismissedUpgrade(true)} />
+        )}
 
         <Routes>
           <Route path="/" element={<ChatPage />} />
