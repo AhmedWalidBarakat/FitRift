@@ -9,7 +9,7 @@
 ![Groq](https://img.shields.io/badge/Groq-LLM-DC2626?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-D4AF37?style=for-the-badge)
 
-**[Live demo →](https://fit-rift.vercel.app)** (backend is on a free tier and may take ~30s to wake up on the first request)
+**[Live demo →](https://fit-rift.vercel.app)**, click "Guest Mode" to try it instantly with no signup (backend is on a free tier and may take ~30s to wake up on the first request)
 
 ![FitRift screenshot](assets/screenshot.png)
 
@@ -31,6 +31,10 @@ Personally, this one wasn't just a portfolio exercise. I'm into fitness and push
 - **A rotating quest board**: daily and weekly quests are randomly picked from a pool (run a distance, hit a rep target, complete a multi-exercise circuit) and reward both bonus XP and specific stat points
 - **Personal records & progression unlocks**: every new best is tracked per exercise, with celebratory banners and confetti when you set one
 - **Badges** for milestones: first workout, first PR, first quest, and one per rank achieved
+- **Guest mode**: try the whole app instantly with no signup (an anonymous Supabase session), then add an email and password later to keep the same progress permanently
+- **A dedicated Rank page**: full stat breakdown, next-rank checklist, and your earned/locked badge collection, with a compact live version on the Chat page too
+- **Previous Chats**: every past workout log, with the exact message you typed and how it was parsed, browsable at any time
+- **A hand-drawn hunter-guild look**: gold-trimmed ornate panels, skill-tree-style progression medallions, a mountain-dusk background, and a floating scroll of original motivational quotes
 - **Real accounts**: Supabase Auth backs signup/login, so progress is tied to you, not a browser session
 
 ## How it works
@@ -54,7 +58,7 @@ Personally, this one wasn't just a portfolio exercise. I'm into fitness and push
 2. **Progress engine**: each logged set is compared against the user's personal baseline for that exercise to compute XP, checked against personal records, checked against progression-chain unlock thresholds, and rolled into five weighted RPG stats.
 3. **Quests**: a deterministic-per-user random pick from a pool of daily/weekly quest templates (total reps, a specific exercise's distance/reps, a multi-exercise circuit, workout consistency, effort reporting) tracks live progress and pays out XP plus, for some quests, a direct stat bonus.
 4. **Rank**: Hunter rank (E through S) is recomputed from cumulative XP, lifetime workout count, and lifetime rep count together, so climbing requires well-rounded consistency, not just XP farming.
-5. **Frontend** (React + Vite): three pages, a chat log with a live rank/stat/quest sidebar, the Ascension Path progression map, and a dedicated Quest Board showing the full quest pool.
+5. **Frontend** (React + Vite): a chat log with a live rank/quest summary, a dedicated Rank page with full stats and badges, the Ascension Path progression map, and a Quest Board showing the full quest pool.
 
 ## Tech stack
 
