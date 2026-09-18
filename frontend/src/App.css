@@ -63,24 +63,48 @@ body {
 }
 
 .header h1 {
-  font-size: 1.6rem;
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 .rank-card {
-  border-radius: 16px;
-  padding: 1rem 1.2rem;
+  position: relative;
+  border-radius: 8px;
+  padding: 1.1rem 1.3rem;
   margin-bottom: 1rem;
-  background: #1e1414;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, #241717, #1a1010);
+  border: 2px solid #6b4a23;
+  box-shadow:
+    inset 0 0 0 1px rgba(212, 175, 55, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 6px 16px rgba(0, 0, 0, 0.45);
 }
 
+.rank-card::before,
+.rank-card::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  width: 9px;
+  height: 9px;
+  background: #d4af37;
+  border: 1px solid #6b4a23;
+  transform: rotate(45deg);
+}
+
+.rank-card::before { left: -5px; }
+.rank-card::after { right: -5px; }
+
 .rank-name {
-  font-size: 1.4rem;
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 .rank-e .rank-name { color: #9ca3af; }
@@ -99,9 +123,11 @@ body {
 }
 
 .progress-track {
-  height: 8px;
+  height: 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: #100a0a;
+  border: 1px solid #6b4a23;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
   overflow: hidden;
 }
 
@@ -109,6 +135,7 @@ body {
   height: 100%;
   border-radius: 999px;
   background: linear-gradient(90deg, #dc2626, #d4af37);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -2px 3px rgba(0, 0, 0, 0.3);
 }
 
 .progress-label {
@@ -233,9 +260,11 @@ body {
 .input-row button {
   padding: 0.75rem 1.4rem;
   border-radius: 999px;
-  border: none;
+  border: 1px solid #6b4a23;
   background: linear-gradient(135deg, #dc2626, #d4af37);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.3);
   color: white;
+  font-family: 'Cinzel', serif;
   font-weight: 600;
   cursor: pointer;
 }
@@ -252,8 +281,10 @@ body {
 }
 
 .ascension-title {
-  font-size: 1.4rem;
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
   margin: 0 0 0.25rem;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 .ascension-subtitle {
@@ -270,17 +301,20 @@ body {
 }
 
 .path-card {
-  background: #1e1414;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
+  background: linear-gradient(180deg, #241717, #1a1010);
+  border: 2px solid #6b4a23;
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.3), 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
   padding: 1rem;
 }
 
 .path-title {
+  font-family: 'Cinzel', serif;
   font-weight: 700;
   font-size: 1rem;
   margin-bottom: 0.8rem;
   color: #fca5a5;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 .path-chain {
@@ -350,9 +384,10 @@ body {
 }
 
 .standalone-card {
-  background: #1e1414;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
+  background: linear-gradient(180deg, #241717, #1a1010);
+  border: 2px solid #6b4a23;
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.25);
+  border-radius: 6px;
   padding: 0.6rem 0.8rem;
   display: flex;
   flex-direction: column;
@@ -382,9 +417,10 @@ body {
 }
 
 .auth-card {
-  background: #1e1414;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  background: linear-gradient(180deg, #241717, #1a1010);
+  border: 2px solid #6b4a23;
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.35), 0 6px 16px rgba(0, 0, 0, 0.45);
+  border-radius: 8px;
   padding: 1.5rem;
   width: 100%;
   max-width: 340px;
@@ -394,8 +430,10 @@ body {
 }
 
 .auth-card h2 {
+  font-family: 'Cinzel', serif;
   margin: 0 0 0.25rem;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 .auth-card input {
@@ -454,11 +492,17 @@ body {
 }
 
 .checklist-title {
-  font-size: 0.72rem;
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.6;
-  margin-bottom: 0.4rem;
+  letter-spacing: 0.08em;
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  padding: 0.25rem 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .checklist-item {
@@ -507,9 +551,11 @@ body {
 }
 
 .quest-track {
-  height: 6px;
+  height: 8px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: #100a0a;
+  border: 1px solid #6b4a23;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.7);
   overflow: hidden;
   margin-bottom: 0.3rem;
 }
@@ -517,6 +563,7 @@ body {
 .quest-fill {
   height: 100%;
   background: linear-gradient(90deg, #22c55e, #4ade80);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .quest-fill.weekly {
@@ -561,7 +608,8 @@ body {
 
 .mic-btn {
   background: #1e1414;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid #6b4a23;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   color: white;
   border-radius: 999px;
   width: 44px;
@@ -596,9 +644,10 @@ body {
 }
 
 .quest-page-card {
-  background: #1e1414;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
+  background: linear-gradient(180deg, #241717, #1a1010);
+  border: 2px solid #6b4a23;
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.3), 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
   padding: 1rem 1.1rem;
   display: flex;
   flex-direction: column;
@@ -606,8 +655,8 @@ body {
 }
 
 .quest-page-card.completed {
-  border-color: rgba(74, 222, 128, 0.4);
-  background: linear-gradient(160deg, #1e1414, rgba(34, 197, 94, 0.08));
+  border-color: rgba(74, 222, 128, 0.5);
+  background: linear-gradient(160deg, #241717, rgba(34, 197, 94, 0.1));
 }
 
 .quest-page-header {
@@ -617,10 +666,15 @@ body {
 }
 
 .quest-page-tag {
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  opacity: 0.6;
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
   font-weight: 700;
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  padding: 0.2rem 0.55rem;
 }
 
 .quest-page-done {
@@ -630,9 +684,11 @@ body {
 }
 
 .quest-page-title {
+  font-family: 'Cinzel', serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: #fca5a5;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 .quest-page-desc {
@@ -643,7 +699,9 @@ body {
 .quest-track.page {
   height: 8px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: #100a0a;
+  border: 1px solid #6b4a23;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.7);
   overflow: hidden;
 }
 
@@ -706,16 +764,17 @@ body {
 }
 
 .quest-pool-card {
-  background: #1e1414;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
+  background: linear-gradient(180deg, #201414, #180f0f);
+  border: 1px solid #6b4a23;
+  border-radius: 6px;
   padding: 0.7rem 0.85rem;
   opacity: 0.55;
 }
 
 .quest-pool-card.active {
   opacity: 1;
-  border-color: rgba(220, 38, 38, 0.4);
+  border-color: #d4af37;
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.3);
 }
 
 .quest-pool-name {
@@ -731,10 +790,10 @@ body {
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  background: #dc2626;
+  background: linear-gradient(135deg, #dc2626, #d4af37);
   color: white;
-  padding: 0.1rem 0.4rem;
-  border-radius: 999px;
+  padding: 0.15rem 0.45rem;
+  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
 }
 
 .quest-pool-desc {
