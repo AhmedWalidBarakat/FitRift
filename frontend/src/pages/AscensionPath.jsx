@@ -63,10 +63,12 @@ export default function AscensionPath() {
                 <div key={node.id} className="path-node-wrap">
                   <div className={`path-node ${node.unlocked ? 'unlocked' : 'locked'}`}>
                     <span className="node-icon">{node.unlocked ? '🔓' : '🔒'}</span>
-                    <span className="node-name">{node.name}</span>
-                    {node.unlocked && node.best > 0 && (
-                      <span className="node-best">best: {node.best} {node.unit}</span>
-                    )}
+                    <span className="node-text">
+                      <span className="node-name">{node.name}</span>
+                      {node.unlocked && node.best > 0 && (
+                        <span className="node-best">best: {node.best} {node.unit}</span>
+                      )}
+                    </span>
                   </div>
                   {i < arr.length - 1 && <div className="path-arrow">↑</div>}
                 </div>
