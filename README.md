@@ -2,12 +2,12 @@
 
 **A bodyweight fitness RPG website, inspired by my own love of working out and gaming growing up. Tell it what you trained in plain English, and watch your Hunter rank climb from E to S.**
 
-![Node.js](https://img.shields.io/badge/Node.js-Express-339933?logo=node.js&logoColor=white)
-![React](https://img.shields.io/badge/React-Vite-61DAFB?logo=react&logoColor=black)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Supabase-3ECF8E?logo=supabase&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq-LLM-F55036)
-![License](https://img.shields.io/badge/license-MIT-green)
+![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![React](https://img.shields.io/badge/React-Vite-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-LLM-DC2626?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-D4AF37?style=for-the-badge)
 
 **[Live demo →](https://fit-rift.vercel.app)** (backend is on a free tier and may take ~30s to wake up on the first request)
 
