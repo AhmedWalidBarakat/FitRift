@@ -105,9 +105,9 @@ export default function ChatPage() {
         } else if (data.completedQuests?.length > 0) {
           confetti({ particleCount: 90, spread: 75, origin: { y: 0.5 }, colors: ['#4ade80', '#22c55e'] });
         } else if (data.progressionUnlocks?.length > 0) {
-          confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 }, colors: ['#60ecff', '#f59e0b'] });
+          confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 }, colors: ['#60ecff', '#d4af37'] });
         } else if (data.newRecords?.length > 0) {
-          confetti({ particleCount: 80, spread: 70, origin: { y: 0.5 }, colors: ['#facc15', '#f59e0b'] });
+          confetti({ particleCount: 80, spread: 70, origin: { y: 0.5 }, colors: ['#facc15', '#d4af37'] });
         } else if (data.xpEarned > 0) {
           confetti({ particleCount: 30, spread: 50, origin: { y: 0.6 }, scalar: 0.7 });
         }
