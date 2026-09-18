@@ -5,14 +5,22 @@ import ChatPage from './pages/ChatPage';
 import AscensionPath from './pages/AscensionPath';
 import Quests from './pages/Quests';
 import Auth from './pages/Auth';
+import { DumbbellIcon, MountainIcon, FlameIcon, LightningIcon } from './SceneIcons';
 import './App.css';
 
 function SceneBubbles() {
-  const icons = ['🏋️', '🏃', '🤸', '🧗', '💪', '🔥'];
+  const icons = [
+    <DumbbellIcon />,
+    '🏃',
+    '💪',
+    <MountainIcon />,
+    <FlameIcon />,
+    <LightningIcon />,
+  ];
   return (
     <div className="scene-bubbles" aria-hidden="true">
       {icons.map((icon, i) => (
-        <span key={icon} className={`scene-bubble b${i + 1}`}>{icon}</span>
+        <span key={i} className={`scene-bubble b${i + 1}`}>{icon}</span>
       ))}
     </div>
   );
