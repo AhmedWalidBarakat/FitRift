@@ -21,17 +21,17 @@ Personally, this one wasn't just a portfolio exercise. I'm into fitness and push
 
 ## Features
 
-- 🗣️ **Natural-language logging**: type or speak what you trained (`"ran 3km"`, `"15 curls with 20lb dumbbells"`) and a Groq-hosted LLM parses it into structured sets, including reported effort (RPE)
-- 🎙️ **Voice input**: log a workout by talking, via the browser's native speech recognition
-- 📈 **Baseline-relative XP**: your first log of an exercise sets the baseline; every session after that earns XP for improving on *your* history, not a generic standard
-- 🧬 **Five RPG stats** (Strength, Endurance, Vitality, Agility, Discipline) that grow based on which exercises you log and how consistently you show up
-- 🗺️ **The Ascension Path**: push-up, pull-up, and squat progressions unlock tier by tier as you cross rep thresholds, visualized as a chain from beginner to advanced variants
-- 🏆 **Multi-requirement Hunter ranks (E → S)**: rank-up needs XP *and* a minimum lifetime workout count *and* a minimum lifetime rep count together, not just one number going up
-- 🔥 **Streaks with a grace day**: one missed day doesn't reset your streak, two in a row does
-- 📜 **A rotating quest board**: daily and weekly quests are randomly picked from a pool (run a distance, hit a rep target, complete a multi-exercise circuit) and reward both bonus XP and specific stat points
-- ⚔️ **Personal records & progression unlocks**: every new best is tracked per exercise, with celebratory banners and confetti when you set one
-- 🥉 **Badges** for milestones: first workout, first PR, first quest, and one per rank achieved
-- 🔐 **Real accounts**: Supabase Auth backs signup/login, so progress is tied to you, not a browser session
+- **Natural-language logging**: type or speak what you trained (`"ran 3km"`, `"15 curls with 20lb dumbbells"`) and a Groq-hosted LLM parses it into structured sets, including reported effort (RPE)
+- **Voice input**: log a workout by talking, via the browser's native speech recognition
+- **Baseline-relative XP**: your first log of an exercise sets the baseline; every session after that earns XP for improving on *your* history, not a generic standard
+- **Five RPG stats** (Strength, Endurance, Vitality, Agility, Discipline) that grow based on which exercises you log and how consistently you show up
+- **The Ascension Path**: push-up, pull-up, and squat progressions unlock tier by tier as you cross rep thresholds, visualized as a chain from beginner to advanced variants
+- **Multi-requirement Hunter ranks (E through S)**: rank-up needs XP *and* a minimum lifetime workout count *and* a minimum lifetime rep count together, not just one number going up
+- **Streaks with a grace day**: one missed day doesn't reset your streak, two in a row does
+- **A rotating quest board**: daily and weekly quests are randomly picked from a pool (run a distance, hit a rep target, complete a multi-exercise circuit) and reward both bonus XP and specific stat points
+- **Personal records & progression unlocks**: every new best is tracked per exercise, with celebratory banners and confetti when you set one
+- **Badges** for milestones: first workout, first PR, first quest, and one per rank achieved
+- **Real accounts**: Supabase Auth backs signup/login, so progress is tied to you, not a browser session
 
 ## How it works
 
