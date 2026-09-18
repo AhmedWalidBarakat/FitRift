@@ -1,6 +1,6 @@
 # ⚔️ FitRift
 
-**A Solo Leveling-inspired bodyweight fitness RPG. Tell it what you trained in plain English, and watch your Hunter rank climb from E to S.**
+**A bodyweight fitness RPG website, inspired by my own love of working out and gaming growing up. Tell it what you trained in plain English, and watch your Hunter rank climb from E to S.**
 
 ![Node.js](https://img.shields.io/badge/Node.js-Express-339933?logo=node.js&logoColor=white)
 ![React](https://img.shields.io/badge/React-Vite-61DAFB?logo=react&logoColor=black)
