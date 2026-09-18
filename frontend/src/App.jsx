@@ -6,6 +6,7 @@ import AscensionPath from './pages/AscensionPath';
 import Quests from './pages/Quests';
 import Auth from './pages/Auth';
 import { DumbbellIcon, MountainIcon, FlameIcon, LightningIcon } from './SceneIcons';
+import WisdomScroll from './WisdomScroll';
 import './App.css';
 
 function SceneBubbles() {
@@ -79,6 +80,7 @@ function App() {
           <Route path="/quests" element={<Quests />} />
         </Routes>
       </div>
+      <WisdomScroll />
     </>
   );
 }
