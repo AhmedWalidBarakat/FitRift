@@ -20,7 +20,7 @@ export default function Landing({ onShowAuth }) {
 
   return (
     <div className="landing">
-      <h2 className="landing-title">Turn your workouts into a Hunter's rise from E to S-Rank.</h2>
+      <h2 className="landing-title">Your fitness journey from E to S-Rank.</h2>
       <p className="landing-subtitle">
         Describe what you trained in plain English. FitRift tracks XP, personal records, and RPG stats
         against your own baseline, no comparisons to anyone else.
@@ -35,8 +35,7 @@ export default function Landing({ onShowAuth }) {
       {error && <div className="auth-error">{error}</div>}
 
       <p className="landing-note">
-        Trying it free logs you in as a guest so you can play around right away.
-        Make an account whenever you want, and your progress carries over, no restart.
+        Trying it free logs you in as a guest so you can play around right away, no signup needed.
       </p>
     </div>
   );
