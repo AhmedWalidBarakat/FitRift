@@ -20,7 +20,7 @@ export default function Landing({ onShowAuth }) {
 
   return (
     <div className="landing">
-      <h2 className="landing-title">Your fitness journey from E to S-Rank.</h2>
+      <h2 className="landing-title">Turn your workouts into a fitness journey from E to S-Rank.</h2>
       <p className="landing-subtitle">
         Describe what you trained in plain English. FitRift tracks XP, personal records, and RPG stats
         against your own baseline, no comparisons to anyone else.
