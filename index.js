@@ -600,6 +600,18 @@ app.post('/workouts', requireAuth, async (req, res) => {
     res.json({ ...result.workoutLog, ...result });
 });
 
+// Past logged workouts, most recent first, each with what the user typed
+// and how it was parsed, so people can look back at their own history.
+app.get('/history', requireAuth, async (req, res) => {
+    const logs = await prisma.workoutLog.findMany({
+        where: { profileId: req.profileId },
+        orderBy: { timestamp: 'desc' },
+        take: 50,
+        include: { setEntries: { include: { exercise: true } } },
+    });
+    res.json(logs);
+});
+
 app.get('/records', requireAuth, async (req, res) => {
     const records = await prisma.personalRecord.findMany({
         where: { profileId: req.profileId },

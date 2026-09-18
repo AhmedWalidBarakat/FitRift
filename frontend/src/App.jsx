@@ -5,6 +5,7 @@ import ChatPage from './pages/ChatPage';
 import AscensionPath from './pages/AscensionPath';
 import Quests from './pages/Quests';
 import Rank from './pages/Rank';
+import History from './pages/History';
 import Auth from './pages/Auth';
 import Landing from './pages/Landing';
 import { DumbbellIcon, MountainIcon, FlameIcon, LightningIcon } from './SceneIcons';
@@ -81,6 +82,7 @@ function App() {
             <NavLink to="/rank" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Rank</NavLink>
             <NavLink to="/ascension" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Ascension Path</NavLink>
             <NavLink to="/quests" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Quests</NavLink>
+            <NavLink to="/history" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Previous Chats</NavLink>
           </nav>
           <button className="logout-btn" onClick={() => supabase.auth.signOut()}>Log out</button>
         </header>
@@ -94,6 +96,7 @@ function App() {
           <Route path="/rank" element={<Rank />} />
           <Route path="/ascension" element={<AscensionPath />} />
           <Route path="/quests" element={<Quests />} />
+          <Route path="/history" element={<History />} />
         </Routes>
       </div>
       <WisdomScroll />
